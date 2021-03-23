@@ -291,8 +291,8 @@ include "header.php";
 						3=>[ "lastname"=>"MARIE", "firstname"=>"Pierre","average"=>12],
 					];
 
-		foreach ($class as $key => $value) { }	
-		foreach ($class as $value) { }			
+		//foreach ($class as $key => $value) { }	
+		//foreach ($class as $value) { }			
 
 ?>
 
@@ -306,26 +306,28 @@ include "header.php";
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>MARIE</td>
-			<td>Pierre</td>
-			<td>2</td>
-		</tr>
-		<tr>
-			<td>MARIE</td>
-			<td>Pierre</td>
-			<td>5</td>
-		</tr>
-		<tr>
-			<td>MARIE</td>
-			<td>Pierre</td>
-			<td>4</td>
-		</tr>
-		<tr>
-			<td>MARIE</td>
-			<td>Pierre</td>
-			<td>12</td>
-		</tr>
+		<?php
+			foreach ($class as $student) {
+				echo "<tr>
+						<td>".$student["lastname"]."</td>
+						<td>".$student["firstname"]."</td>
+						<td>".$student["average"]."</td>
+					</tr>";
+			}
+		?>
+
+		<!-- boucle 4 fois -->
+		<?php foreach ($class as $student) : ?>
+
+			<tr>
+				<td><?= $student["lastname"];?></td>
+				<td><?= $student["firstname"];?></td>
+				<td><?= $student["average"];?></td>
+			</tr>
+
+		<?php endforeach; ?>
+
+		
 	</tbody>
 </table>
 
