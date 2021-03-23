@@ -1,20 +1,17 @@
 <?php 
  //declare(strict_types = 1);
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Titre de la page</title>
-	<meta name="description"  content="Ceci est ma super page">
-</head>
-<body>
 
-	<header>
-		<h1>Welcome</h1>
-		<nav></nav>
-	</header>
-	<section>
+include "header.php";
+//require "header.php";
+
+
+//require_once
+//include_once
+
+
+
+?>
+
 
 		<?php 
 			//Commentaire sur une ligne
@@ -257,15 +254,83 @@
 		*/
 
 
+			// DO WHILE, WHILE, FOR, FOREACH
+
+			/*
+
+			for($cpt=1; $cpt<=10 ; $cpt++) {
+				//1 -> 10
+				//echo $cpt;
+			}
+
+
+			$number = rand(1, 6);
+			$cpt=1;
+			while($number!=6){
+				$number = rand(1, 6);
+				$cpt++;
+			}
+
+			echo "Pour tomber sur 6 il m'a fallut ".$cpt." tentatives";
+			
+
+			$cpt=0;
+			do{
+				$number = rand(1, 6);
+				$cpt++;
+			}while($number!=6);
+
+			echo "Pour tomber sur 6 il m'a fallut ".$cpt." tentatives";
+			*/
+
+
+			$class = [
+						0=>[ "lastname"=>"MARIE", "firstname"=>"Pierre","average"=>2],
+						1=>[ "lastname"=>"MARIE", "firstname"=>"Pierre","average"=>5],
+						2=>[ "lastname"=>"MARIE", "firstname"=>"Pierre","average"=>4],
+						3=>[ "lastname"=>"MARIE", "firstname"=>"Pierre","average"=>12],
+					];
+
+		foreach ($class as $key => $value) { }	
+		foreach ($class as $value) { }			
+
+?>
+
+
+<table border="1px">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Prénom</th>
+			<th>Moyenne</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>MARIE</td>
+			<td>Pierre</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>MARIE</td>
+			<td>Pierre</td>
+			<td>5</td>
+		</tr>
+		<tr>
+			<td>MARIE</td>
+			<td>Pierre</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>MARIE</td>
+			<td>Pierre</td>
+			<td>12</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<?php
+include "footer.php";
+
 		?>
-
-
-
-
-	</section>
-	<footer>
-		©Yves SKRZYPCZYK
-	</footer>
-
-</body>
-</html>
