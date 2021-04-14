@@ -5,6 +5,8 @@ include "header.php";
 //require "header.php";
 
 
+echo $_COOKIE['pseudo'];
+
 //require_once
 //include_once
 
