@@ -2,6 +2,32 @@
 
 namespace App;
 
+//création de mon Autoload
+//Il s'agit d'executer une fonction lorsqu'il y a tentative
+//d'instanciation sur une class que le code ne connait pas
+
+spl_autoload_register("App\myAutoloader");
+
+
+function myAutoloader($class) {
+	// Tentatitve d'instance de App\Core\View
+	// App\Core\View -> App/Core/View
+	$class = str_replace("\\", "/", $class);
+	// App/Core/View -> Core/View
+	$class = str_ireplace("App/", "", $class);
+	// Core/View -> Core/View.php
+	$class .= ".php";
+	if(file_exists($class)){
+		require $class;
+	}
+}
+
+
+
+
+
+
+
 //En fonction de l'url on doit appeler la bonne methode du bon controller
 // http://localhost/login -> Security -> Login()
 
@@ -26,17 +52,30 @@ $route = $listOfRoutes[$uri]??$listOfRoutes["/404"];
 $controller = $route["controller"];
 $action = $route["action"];
 
-//EXEMPLE :
-//$controller = "Security"
-//$action = "login"
-require "Controllers/".$controller.".php";
 
-//Attention si on fait une instance de class dynamique
-//comme c'est notre cas ici il faut préciser à la racine 
-//du namespace
-$controllerWithNP = "App\\Controllers\\".$controller;
-$cObject = new $controllerWithNP();
+//Est-ce que le fichier controller existe
+if(file_exists("Controllers/".$controller.".php")) {
+	require "Controllers/".$controller.".php";
 
-$cObject->$action();
+	//Est-ce que la class existe
+	$controllerWithNP = "App\\Controllers\\".$controller;
+	if( class_exists($controllerWithNP) ) {
+		$cObject = new $controllerWithNP();
+		//Est-ce que la méthode existe 
+		if(method_exists($cObject, $action)){
+			$cObject->$action();
+		} else {
+			die("La methode ".$action." n'existe pas");
+		}
+	}else{
+		die("La class ".$controllerWithNP." n'existe pas");
+	}
+
+} else {
+	die("Le fichier Controllers/".$controller.".php n'existe pas");
+}
+
+
+
 
 

@@ -2,11 +2,14 @@
 
 namespace App\Controllers;
 
+use App\Core\View;
+
 class Security
 {
 
 	public function login() {
-		echo "Security/login";
+		//Afficher la vue login à l'interieur du template front
+		$v = new View("Security/login", "front");
 	}
 
 	public function logout() {
@@ -14,7 +17,11 @@ class Security
 	}
 
 	public function register() {
-		echo "Security/register";
+		$v = new View("Security/register", "front");
 	}
 	
 }
+
+
+
+
