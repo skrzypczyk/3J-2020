@@ -2,11 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Core\View;
+
 class Main
 {
 
 	public function default() {
-		echo "Main/default";
+
+		
+		$v = new View("Main/home", "front");
+		$v->firstname = "Yves";
+		$v->lastname = "SKRZYPCZYK";
+
 	}
 
 

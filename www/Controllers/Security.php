@@ -14,6 +14,7 @@ class Security
 
 	public function logout() {
 		echo "Security/logout";
+		//Redirection sur la home
 	}
 
 	public function register() {

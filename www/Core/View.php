@@ -6,11 +6,23 @@ class View
 {
 	private $template;
 	private $view;
+	private $data = [];
 
 	public function __construct ($view, $template="back") {
 		$this->setTemplate($template);
 		$this->setView($view);
 	}
+
+	//objectif : debug
+	//Afficher les information de la vue pour comprendre ce qu'il y a dedans
+    public function __toString(){
+    	$msg = "Le template c'est : ".$this->template."<br>";
+    	$msg .= "La vue c'est : ".$this->view."<br>";
+    	$msg .= "Voici les données  : ".serialize($this->data)."<br>";
+
+    	return $msg;
+    }
+
 
 
 	public function setTemplate($template){
@@ -32,7 +44,17 @@ class View
 		}
 	}
 
+	//Le setter margique est declenché lorsque j'essaye de mettre une valeur
+	//dans un attribut qui n'existe pas
+	public function __set($name, $value)
+    {
+        $this->data[$name]=$value;
+    }
+
+
+
 	public function __destruct(){
+		extract($this->data);
 		require $this->template;
 	}
 
