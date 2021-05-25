@@ -1,0 +1,41 @@
+Initialisation du projet :
+-> MCD
+-> Framework FROM SCRATCH
+-> Connexion SMTP - PHPMAILER 1J
+
+
+Authentification : 9j
+
+-> Inscription 3.5j
+———> Création d’un formulaire 0.5
+———> Validation des champs avec notifications 1
+———> Enregistrement en bdd 0.5
+———> Confirmation par email 1j
+———> CGU et mentions légales 0j
+———> Captcha From scratch 0.5j
+
+-> Connexion 2
+———> Création d’un form 0.5
+———> Validation des champs avec notif 1j
+———> Captcha 0j
+———> Remember me 0.5j
+
+-> Déconnexion 0.5j
+
+-> Mot de passe oublié 3j
+———> Création de 2 forms 1
+———> Mail avec un lien permettant de saisir un nouveau mot de passe 1j
+———> Validation des champs avec notif 1
+
+————————————————————————————
+
+Technique :
+
+Authentification :
+-> bcrypt
+-> Token : à définir plus tard
+-> Captcha : Lib GD
+-> logs
+
+
+
