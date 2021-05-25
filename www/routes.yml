@@ -18,3 +18,8 @@
 /register:
   controller : "Security" 
   action : "register"
+
+
+/toto:
+  controller : "Main" 
+  action : "toto"

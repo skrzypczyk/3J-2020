@@ -9,13 +9,13 @@ class User extends Database
 
 	private $id = null;
 
-	private $firstname;
-	private $lastname;
-	private $email;
-	private $pwd;
+	protected $firstname;
+	protected $lastname;
+	protected $email;
+	protected $pwd;
 
-	private $status = 0;
-	private $role = 0;
+	protected $status = 0;
+	protected $role = 0;
 
 	private $dateInserted;
 	private $dateUpdated;

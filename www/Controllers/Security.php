@@ -21,6 +21,8 @@ class Security
 	public function register() {
 
 		$user = new User();
+
+		//$user->setId(2);
 		$user->setFirstname("Yves");
 		$user->setLastname("SKRZYPCZYK");
 		$user->setEmail("y.skrzypczyk@gmail.com");

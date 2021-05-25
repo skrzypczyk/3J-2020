@@ -9,6 +9,7 @@ namespace App;
 spl_autoload_register("App\myAutoloader");
 
 
+
 function myAutoloader($class) {
 	// Tentatitve d'instance de App\Core\View
 	// App\Core\View -> App/Core/View
@@ -18,8 +19,9 @@ function myAutoloader($class) {
 	// Core/View -> Core/View.php
 	$class .= ".php";
 	if(file_exists($class)){
-		require $class;
+		include $class;
 	}
+
 }
 
 
@@ -55,10 +57,13 @@ $action = $route["action"];
 
 //Est-ce que le fichier controller existe
 if(file_exists("Controllers/".$controller.".php")) {
-	require "Controllers/".$controller.".php";
+	include "Controllers/".$controller.".php";
 
 	//Est-ce que la class existe
 	$controllerWithNP = "App\\Controllers\\".$controller;
+
+
+	
 	if( class_exists($controllerWithNP) ) {
 		$cObject = new $controllerWithNP();
 		//Est-ce que la méthode existe 

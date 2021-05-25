@@ -6,6 +6,9 @@ class Database
 {
 
 	protected $db;
+	protected $inutile1;
+	protected $inutile2;
+	protected $inutile3;
 
 	//Connexion à la base de données
 	public function __construct()
@@ -33,11 +36,36 @@ class Database
 		//Construire de manière dynamique ma requête SQL
 		//exemple générer INSERT INTO gkvw0_user (firstname, lastname, email, pwd) VALUES (......);
 
-		$table = get_called_class();
+		$classExploded = explode("\\", get_called_class());
+		$table = end($classExploded) ;
 
-		//si l'id n'est pas null alors ce n'est pas un INSERT que l'on doit faire mais un UPDATE
 
-		//attention à utiliser la notion PREPARE de PDO.
+
+		$columns = get_object_vars($this);
+		$toDelete = get_class_vars(get_class());
+		$data = array_diff_key($columns, $toDelete);
+
+
+
+
+		if (is_null($this->getId())) {
+
+
+			$sql = " INSERT INTO gkvw0_".$table." 
+			(". implode(",", array_keys($data)) .") 
+			VALUES 
+			(:". implode(",:", array_keys($data)) .")";
+
+			$queryPrepared = $this->db->prepare($sql);
+
+			$queryPrepared->execute( $data );
+			
+		}else {
+			//UPDATE
+		}
+
+		
+
 
 	}
 

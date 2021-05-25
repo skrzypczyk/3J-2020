@@ -54,6 +54,10 @@ class View
 
 
 	public function __destruct(){
+
+		// ["fruit"=>"banane", "legume"=>"Choux"]
+		// $fruit = "banane"
+		// $legume = "Choux"
 		extract($this->data);
 		require $this->template;
 	}
