@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Core\Form;
+use App\Core\FormVerification;
 use App\Models\User;
 
 class Security
@@ -21,18 +23,32 @@ class Security
 	public function register() {
 
 		$user = new User();
+		$configForm = $user->formRegister();
 
-		//$user->setId(2);
-		$user->setFirstname("Yves");
-		$user->setLastname("SKRZYPCZYK");
-		$user->setEmail("y.skrzypczyk@gmail.com");
-		$user->setPwd("Test1234");
+		$form = new Form($configForm);
 
-
-		$user->save();
+		if (!empty($_POST)) {
+			$listOfErrors = FormVerification::check($_POST, $configForm);
+			if(empty($listOfErrors)){
+				//Insertion en base de données + redirection
+				/*
+				$user->setFirstname("Yves");
+				$user->setLastname("SKRZYPCZYK");
+				$user->setEmail("y.skrzypczyk@gmail.com");
+				$user->setPwd("Test1234");
+				$user->save();
+				*/
+			}
+			//Sinon afficher dans la vue les erreurs
+		}
 
 
 		$v = new View("Security/register", "front");
+		$v->form = $form->renderHtml();
+		$v->listOfErrors = $listOfErrors??[];
+
+
+
 	}
 	
 }

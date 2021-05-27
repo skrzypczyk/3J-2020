@@ -180,6 +180,66 @@ class User extends Database
     }
 
 
+
+    public function formRegister () {
+
+        return [
+                    "action"=>"",
+                    "method"=>"POST",
+                    "submit"=>"S'inscrire",
+                    "inputs"=> [
+                                    "firstname"=>[
+                                                    "type"=>"text", 
+                                                    "required"=>true,
+                                                    "placeholder"=>"Votre Prénom",
+                                                    "minLength"=>2,
+                                                    "value"=>"Yves",
+                                                    "error"=>"Votre prénom doit faire au minimum 2 caractères"
+                                                ],
+                                    "lastname"=>[
+                                                    "type"=>"text", 
+                                                    "required"=>true,
+                                                    "placeholder"=>"Votre Nom",
+                                                    "minLength"=>2,
+                                                    "error"=>"Votre nom doit faire au minimum 2 caractères"
+                                                ],
+                                    "country"=>[
+                                                    "type"=>"select", 
+                                                    "required"=>true,
+                                                    "placeholder"=>"Votre Pays",
+                                                    "options"=>["fr","en"]
+                                                ],
+                                    "email"=>[
+                                                    "type"=>"email", 
+                                                    "unicity"=>"email",
+                                                    "required"=>true,
+                                                    "placeholder"=>"Votre Email",
+                                                    "error"=>"Votre email n'est pas correct"
+                                                ],
+                                    "password"=>[
+                                                    "type"=>"password", 
+                                                    "required"=>true,
+                                                    "placeholder"=>"Votre mot de passe",
+                                                    "minLength"=>4,
+                                                    "maxLength"=>32,
+                                                    "error"=>"Votre mot de passe doit faire entre 4 et 32 caractères"
+                                                ],
+                                    "passwordConfirm"=>[
+                                                    "type"=>"password", 
+                                                    "required"=>true,
+                                                    "placeholder"=>"Confirmation du mot de passe",
+                                                    "confirm"=>"password",
+                                                    "error"=>"Les mots de passe ne correspondent pas"
+                                                ]
+                                                            
+
+
+                                ]
+                ];
+
+    }
+
+
 }
 
 
