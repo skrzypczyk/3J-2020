@@ -16,6 +16,9 @@ class Form
 
 			if($configInput["type"]=="select"){
 				$this->generateSelect($name, $configInput);	
+			}
+			else if($configInput["type"]=="captcha"){
+				$this->generateCaptcha($name, $configInput);	
 			}else {
 				$this->generateInput($name, $configInput);	
 			}
@@ -37,6 +40,12 @@ class Form
 			$this->html .="<option>".$option."</option>";
 		}
 		$this->html .="</select>";
+	}
+
+
+	public function generateCaptcha($name, $configInput) {
+		$this->html .="<img src='".$configInput['src']."' width='200px'><input placeholder='".htmlspecialchars($configInput["placeholder"]??"", ENT_QUOTES)."' name='".$name."' >";
+		
 	}
 
 	public function generateInput($name, $configInput) {
